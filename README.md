@@ -1,3 +1,3 @@
-[![GitHub Actions Demo](https://github.com/anmac/first-actions/actions/workflows/github-actions-demo.yml/badge.svg?event=push)](https://github.com/anmac/first-actions/actions/workflows/github-actions-demo.yml)
+[![Continuous Deployment](https://github.com/anmac/first-actions/actions/workflows/deployment.yml/badge.svg?branch=master)](https://github.com/anmac/first-actions/actions/workflows/deployment.yml)
 
 # First Actions
