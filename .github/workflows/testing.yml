@@ -23,13 +23,13 @@ jobs:
           name: mult-log-file
           path: mult.log
 
-  # print_output:
-  #   name: Print output
-  #   runs-on: ubuntu-latest
-  #   needs: save_output
+  print_output:
+    name: Print output
+    runs-on: ubuntu-latest
+    needs: save_output
 
-  #   steps:
-  #     - name: Download a single artifact
-  #       uses: actions/download-artifact@v4
-  #       with:
-  #         name: sum-log-file
+    steps:
+      - name: Download a single artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: mult-log-file
