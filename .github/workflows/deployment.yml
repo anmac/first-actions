@@ -27,5 +27,5 @@ jobs:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-trust-role
           role-session-name: github-trust-role
           aws-region: ${{ vars.AWS_REGION }}
-      - name: deploy
+      - name: Deploy to Lambda
         run: aws lambda update-function-code --function-name firstLambdaDeploy --zip-file=fileb://deploy.zip
