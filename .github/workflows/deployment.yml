@@ -16,16 +16,20 @@ permissions:
 jobs:
   deploy_lambda:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
+
       - name: Generate deployment package
         run: zip -r deploy.zip index.mjs
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-trust-role
           role-session-name: github-trust-role
           aws-region: ${{ vars.AWS_REGION }}
+
       - name: Deploy to Lambda
         run: aws lambda update-function-code --function-name firstLambdaDeploy --zip-file=fileb://deploy.zip
