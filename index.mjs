@@ -4,6 +4,7 @@ export const handler = async () => {
     body: JSON.stringify({
       message: 'firstLambdaDeploy! Your function executed successfully!',
       number: Math.random() * 100, // add a comment
+      input: {},
     }),
   };
 
