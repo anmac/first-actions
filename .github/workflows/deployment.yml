@@ -9,21 +9,23 @@ on:
     branches:
       - master
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   deploy_lambda:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
+      - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Generate deployment package
         run: zip -r deploy.zip index.mjs
-      # - name: Configure AWS Credentials
-      #   uses: aws-actions/configure-aws-credentials@v1
-      #   with:
-      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws-region: ${{ secrets.AWS_REGION }}
-      # - name: deploy
-      #   run: |
-      #     zip -r deploy.zip index.mjs
-      #     aws lambda update-function-code --function-name firstLambdaDeploy --zip-file=fileb://deploy.zip
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github-trust-role
+          role-session-name: github-trust-role
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: deploy
+        run: aws lambda update-function-code --function-name firstLambdaDeploy --zip-file=fileb://deploy.zip
