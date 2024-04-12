@@ -1,4 +1,4 @@
-name: Continuous Deployment
+name: Deployment
 run-name: Deploy to AWS Lambda
 
 on:
